@@ -8,10 +8,12 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,// transparent status bar
-    systemNavigationBarColor: Colors.black, // navigation bar color
     statusBarIconBrightness: Brightness.dark, // status bar icons' color
+    systemNavigationBarColor: Colors.transparent, // navigation bar color
     systemNavigationBarIconBrightness: Brightness.dark,
+    systemNavigationBarDividerColor: kGrey,
   ));
+  
   runApp(MyApp());
 }
 

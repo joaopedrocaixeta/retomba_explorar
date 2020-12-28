@@ -62,9 +62,9 @@ class _MapState extends State<Map> {
       _mapMarker1= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin1.png", 150);//assign path
       _mapMarker2= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin2.png", 150);//assign path
       _mapMarker3= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin3.png", 150);//assign path
-      _mapMarker1s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin1s.png", 150);//assign path
-      _mapMarker2s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin2s.png", 150);//assign path
-      _mapMarker3s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin3s.png", 150);//assign path
+      //_mapMarker1s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin1s.png", 150);//assign path
+      //_mapMarker2s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin2s.png", 150);//assign path
+      //_mapMarker3s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin3s.png", 150);//assign path
     }
   }
 
@@ -95,7 +95,7 @@ class _MapState extends State<Map> {
       ),
       Marker(
         markerId: MarkerId("marker_3"),
-        position: LatLng(-18.935, -48.2857),
+        position: LatLng(-18.9357, -48.2857),
         icon: _mapMarker3,
       ),
     ].toSet();
@@ -119,7 +119,7 @@ class _MapState extends State<Map> {
             },
             onCameraMove: (CameraPosition cameraPosition) {
               if (cameraPosition.zoom<16.6){
-                _updateMarkers();
+                //_updateMarkers();
               }
             },
             mapType: MapType.normal,
@@ -142,26 +142,41 @@ class _MapState extends State<Map> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                FloatingActionButton(
-                  onPressed: _goToDefault,
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.my_location_rounded , color: kDarkBlue,),
+                Container(
+                  width: 48,
+                  height: 48,
+                  child: FittedBox(
+                    child: FloatingActionButton(
+                      onPressed: _goToDefault,
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.my_location_rounded , color: kDarkBlue,),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                FloatingActionButton(
-                  onPressed: _goToDefault,
-                  backgroundColor: kDarkBlue,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.directions , color: Colors.white,),
-                      Text("IR", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w700),)
-                    ],
+                Container(
+                  width: 48,
+                  height: 48,
+                  child: FittedBox(
+                    child: FloatingActionButton(
+                      onPressed: _goToDefault,
+                      backgroundColor: kDarkBlue,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.directions , color: Colors.white,),
+                          Text("IR", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w700),)
+                        ],
+                      ),
+                    ),
                   ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
               ]
             ),
