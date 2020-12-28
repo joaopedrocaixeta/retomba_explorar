@@ -9,5 +9,6 @@ const kDarkRed = Color(0xFFD34F4F);
 const kLightBlue = Color(0xFF475977);
 const kRed = Color(0xFFE25959);
 const kGrey = Color(0xFFB1B1B1);
+const kLightGrey = Color(0xFFE1E1DD);
 
 const double kDefaultPadding = 20.0;

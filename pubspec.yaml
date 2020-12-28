@@ -29,6 +29,7 @@ flutter:
   assets:
     - assets/map/map_style.json
     - assets/icons/map/
+    - assets/icons/
 
  
   fonts:
