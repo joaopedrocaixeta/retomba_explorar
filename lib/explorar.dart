@@ -1,5 +1,5 @@
 
-import 'package:explorar/components/menuButtom.dart';
+import 'package:explorar/components/leadingButtom.dart';
 import 'package:explorar/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:explorar/explorar/mapa.dart';

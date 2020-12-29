@@ -20,8 +20,8 @@ class _MapState extends State<Map> {
   BitmapDescriptor _mapMarker2;
   BitmapDescriptor _mapMarker3;
   BitmapDescriptor _mapMarker1s;
-  BitmapDescriptor _mapMarker2s;
-  BitmapDescriptor _mapMarker3s;
+  //BitmapDescriptor _mapMarker2s;
+  //BitmapDescriptor _mapMarker3s;
 
   static final LatLng myLocation = LatLng(-18.925007, -48.283918); //deixar arbitrario assim mesmo
 
@@ -62,24 +62,29 @@ class _MapState extends State<Map> {
       _mapMarker1= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin1.png", 150);//assign path
       _mapMarker2= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin2.png", 150);//assign path
       _mapMarker3= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin3.png", 150);//assign path
-      //_mapMarker1s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin1s.png", 150);//assign path
-      //_mapMarker2s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin2s.png", 150);//assign path
-      //_mapMarker3s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin3s.png", 150);//assign path
+      _mapMarker1s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin1s.png", 80);//assign path
+      //_mapMarker2s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin2s.png", 80);//assign path
+      //_mapMarker3s= await getBitmapDescriptorFromAssetBytes("assets/icons/map/pin3s.png", 80);//assign path
     }
   }
 
-  _updateMarkers(){
-    //mudar o icone do marcador para o marcador menor 'pinXs.png' baseado no zoom
-  }
+  /*_updateMarkers(){
+    //mudar o marcador para versão pin'X's.png se o zoom for menor que 16.2
+  }*/
 
   _onMarkerClicked(){
+    
+    print("clicou");
     //subir uma pagina de informações do edifício
     //colocar um círculo atrás do marcador
   }
 
-  
-  Set<Marker> _createMarkers() {
-    return <Marker>[
+
+  @override
+  Widget build(BuildContext context) {
+    _createMarkerImageFromAsset(context);
+
+    List <Marker> myMarkers = [
       Marker(
         markerId: MarkerId("marker_1"),
         position: myLocation,
@@ -92,19 +97,19 @@ class _MapState extends State<Map> {
         markerId: MarkerId("marker_2"),
         position: LatLng(-18.93, -48.285),
         icon: _mapMarker2,
+        onTap: (){
+          _onMarkerClicked();
+        },
       ),
       Marker(
         markerId: MarkerId("marker_3"),
         position: LatLng(-18.9357, -48.2857),
         icon: _mapMarker3,
+        onTap: (){
+          _onMarkerClicked();
+        },
       ),
-    ].toSet();
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    _createMarkerImageFromAsset(context);
+    ];
 
     return Stack(
       children: <Widget> [
@@ -118,8 +123,10 @@ class _MapState extends State<Map> {
               setState(() {});
             },
             onCameraMove: (CameraPosition cameraPosition) {
-              if (cameraPosition.zoom<16.6){
-                //_updateMarkers();
+              if (cameraPosition.zoom<16.2){
+                print(cameraPosition.zoom);
+                //_updateMarkers()
+                //trocar o icon do marcador para a versão pequena
               }
             },
             mapType: MapType.normal,
@@ -127,7 +134,7 @@ class _MapState extends State<Map> {
             zoomGesturesEnabled: true,
             zoomControlsEnabled: false,
             rotateGesturesEnabled: true,
-            markers: _createMarkers(),
+            markers: Set.from(myMarkers),
             initialCameraPosition: _kDefaultPosition,
             
             
