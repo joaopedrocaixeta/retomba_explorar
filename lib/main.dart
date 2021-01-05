@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'constants.dart';
+import 'edificio_screen/edificio_gallery.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         //textTheme: Theme.of(context).textTheme.apply(bodyColor: kDarkBlue),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Explorar(),
+      home: CarouselDemo(),
     );
   }
 }

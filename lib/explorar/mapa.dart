@@ -71,9 +71,13 @@ class _MapState extends State<Map> {
   /*_updateMarkers(){
     //mudar o marcador para versão pin'X's.png se o zoom for menor que 16.2
   }*/
+  
 
   _onMarkerClicked(){
-    
+    final snackBar = SnackBar(
+      content: Text('Yay! A SnackBar!'),
+    );
+    Scaffold.of(context).showSnackBar(snackBar);
     print("clicou");
     //subir uma pagina de informações do edifício
     //colocar um círculo atrás do marcador
